@@ -13,21 +13,53 @@
 #include "push_swap.h"
 #include <stdio.h>
 
-/*node_list	*swap_a(node_list *stack_a)
+node_list	*swap_a(node_list *stack_a)
 {
+	node_list *current_x;
+	node_list *current_y;
+	node_list *previous_y;
+	node_list *temp;
 
+	current_x = stack_a;
+	current_y = stack_a->next;
+	previous_y = stack_a;
+	stack_a = current_y;
+	previous_y->next = current_x;
+	temp = current_y->next;
+	current_y->next = current_x->next;
+	current_x->next = temp;
+	printf("\nswapped list: \n");
+	print_stack(stack_a);
+	return (stack_a);
 }
 
 node_list	*swap_b(node_list *stack_b)
 {
-}*/
+	node_list *current_x;
+	node_list *current_y;
+	node_list *previous_y;
+	node_list *temp;
 
-/*node_list	ss(node_list stack_ a, node_list stack_b)
-{
-	swap_a(stack_a);
-	swap_b(stack_b);
+	current_x = stack_b;
+	current_y = stack_b->next;
+	previous_y = stack_b;
+	stack_b = current_y;
+	previous_y->next = current_x;
+	temp = current_y->next;
+	current_y->next = current_x->next;
+	current_x->next = temp;
+	printf("\nswapped list B: \n");
+	print_stack(stack_b);
+	return (stack_b);
 }
-
+/*
+node_list	*swap_both(node_list *stack_a, node_list *stack_b)
+{
+	stack_a = swap_a(stack_a);
+	stack_b = swap_b(stack_b);
+	return (stack_a + stack_b);
+}*/
+/*
 node_list	*push_to_a(node_list stack_a, node_list stack_b)
 {
 //push 1st int from b to a
@@ -35,78 +67,131 @@ node_list	*push_to_a(node_list stack_a, node_list stack_b)
 	stack_b->next = *stack_a;
 	*stack_a = stack_b;
 }
-
-node_list *push_to_b(node_list stack_b, node_list stack_a)
+*/
+node_list *push_to_b(node_list *stack_a, node_list *stack_b)
 {
-//push 1st int from a to b
-//do nothg if a is NULL
-	stack_a->next = *stack_b;
-	*stack_b = stack_a;	
+	node_list	*pushed;
+
+	pushed = stack_a;
+	if (stack_b == NULL)
+		stack_b = lst_addnew((int)pushed);
+	else
+	stack_b = lst_addfront(stack_a, pushed);
+	printf("\npushed to b list B: \n");
+	print_stack(stack_b);
+	printf("\npushed to b list A: \n");
+	print_stack(stack_a);
+	return (stack_b);
 }	
 
-node_list ra(node_list stack_a)
+node_list *rotate_a(node_list *stack_a)
 {
-//décale d'un cran vers le haut dans stack a
+	node_list	*first;
+	node_list	*last;
+	int			i;
+
+
+	if (stack_a == NULL || stack_a->next == NULL)
+		return (NULL);
+	i = 0;
+	first = stack_a;
+	last = stack_a;
+	while (last && last->next)
+	{
+		last = last->next;
+		i++;
+	}
+	stack_a = first->next;
+	first->next = NULL;
+	last->next = first;
+	printf("\nrotate up list:\n");
+	print_stack(stack_a);
+	return (stack_a);
 }
 
-int rb(int b)
+node_list *rotate_b(node_list *stack_b)
 {
-//décale d'un cran vers le haut dans stack b
-}
+	node_list 	*first;
+	node_list	*last;
+	int			i;
 
+	if (stack_b == NULL || stack_b->next == NULL)
+		return (NULL);
+	i = 0;
+	first = stack_b;
+	last = stack_b;
+	while (last && last->next)
+	{
+		last = last->next;
+		i++;
+	}
+	stack_b = first->next;
+	first->next = NULL;
+	last->next = first;
+	return (stack_b);
+}
+/*
 int rr(int a, int b)
 {
 //ra + rb
 }
 */
-node_list *rra(node_list *stack_a)
+node_list *rotate_down_a(node_list *stack_a)
 {
 	node_list *temp;
-	node_list *new_stack;
 	int		i;
 	int		j;
 	
-	printf("\n");
-	print_stack(stack_a);
-	temp = stack_a;//assign to head of stack a
+	temp = stack_a;
 	i = 0;
-	while (temp->next) //while i'm not at the end of the list
+	while (temp && temp->next)
 	{
-		temp = temp->next;//move forward
-		i++;//count length
-		printf("%d\n", i);
+		temp = temp->next;
+		i++;
 	}
-	temp->next = stack_a;//here temp->next should be equal to last elem
-						 //which we assign to head
-
-	j = i - 1;//assign j to lenght of list minus x times we want to rotate 
-			  //always one time in our case
-	temp = stack_a;//reassign hed to temp to back to beginning of list
+	temp->next = stack_a;
+	j = i - 1; 
+	temp = stack_a;
 	while (j)
 	{
-		temp = temp->next;//should go to last elem we want
+		temp = temp->next;
 		j--;
 	}	
-	new_stack = temp->next; //return our new head;
+	stack_a = temp->next;
 	temp->next = NULL;
-   
-	printf("\n");
-	print_stack(new_stack);
-	return (new_stack);	//should tell the new last elem 
-					  //that the next one is the end of the list
+	printf("\nrotate down list:\n");
+	print_stack(stack_a);
+	return (stack_a); 
+}
+
+node_list *rotate_down_b(node_list *stack_b)
+{
+	node_list	*temp;
+	int			i;
+	int			j;
+
+	temp = stack_b;
+	i = 0;
+	while (temp->next)
+	{
+		temp = temp->next;
+		i++;
+	}
+	temp->next = stack_b;
+	j = i - 1;
+	temp = stack_b;
+	while (j)
+	{
+		temp = temp->next;
+		j--;
+	}
+	stack_b = temp->next;
+	temp->next = NULL;
+	return (stack_b);
 }
 /*
-node_list rrb(node_list stack_b)
+node_list *rotate_down_both(node_list *stack_a, node_list *stack_b)
 {
-//décale d'un cran vers le bas dans stack b
-	node_list	*first;
-
-	first = stack_b;
-	first->next = first->next->next;
-	//todo 1st becomes last
-}
-
-int rrr(int a, int b)
-{
-//rra+rrb
+	rotate_down_a(stack_a);
+	rotate_down_b(stack_b);
 }*/
