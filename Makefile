@@ -37,7 +37,7 @@ LIB 		= -L./libft -lft
 
 ${NAME}:	${OBJS}
 		@echo "$(RESET)$(ORANGE)ASSEMBLING $(NAME)$(RESET)"
-		make -C libft
+		make all -C libft
 		${CC} ${CFLAGS} ${OBJS} ${LIB} -o ${NAME}
 		@echo "$(RESET)$(GREEN)$(NAME) HAS ASSEMBLED ✓$(RESET)"
 
@@ -63,7 +63,7 @@ test:		all
 		./${NAME} "5 2 7 1 6 3 9 4 8"		
 		
 clean:		
-		@echo "$(RESET)$(ORANGE)I'M CLEANING UP MY CLOSET...$(RESET)"
+		@echo "$(RESET)$(ORANGE)I'M CLEANING OUT MY CLOSET...$(RESET)"
 		${RM} ${OBJS}
 		@echo "$(RESET)$(GREEN)CLEANED ✓$(RESET)"
 

@@ -12,18 +12,11 @@
 
 #ifndef PUSH_SWAP_H
 
-#define PUSH_SWAP_H
+# define PUSH_SWAP_H
 
-//includes go here
+# include "../libft/libft.h"
 
-
-//functions go here
-typedef struct s_list
-{
-	int 		number;
-	struct s_list	*next;
-}			t_list;
-
-
+t_list	*swap_a(t_list *stack_a);
+void	print_stack(t_list *s);
 
 #endif
