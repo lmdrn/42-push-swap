@@ -65,15 +65,6 @@ void	lst_addback(node_list **lst, node_list *new)
 	}
 }
 
-node_list	*lst_addfront(node_list *lst, node_list *pushed)
-{
-	if (pushed == NULL || pushed->next == NULL)
-		return (NULL);
-	pushed->next = lst;
-	lst = pushed;
-	return (pushed);
-}
-
 void	print_stack(node_list *s)
 {
 	if (!s)
@@ -110,12 +101,11 @@ int main(int argc, char **argv )
 			lst_addback(&stack_a, new);
 			j++;
 		}
-		stack_b = stack_a;
 		print_stack(stack_a);
 		stack_a = swap_a(stack_a);
 		stack_a = rotate_down_a(stack_a);
 		stack_a = rotate_a(stack_a);
-		stack_a = push_to_b(stack_a, stack_b);
+		stack_b = push_to_b(stack_a, stack_b);
 	}
 	return (0);
 }

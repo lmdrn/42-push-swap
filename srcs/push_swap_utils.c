@@ -70,19 +70,29 @@ node_list	*push_to_a(node_list stack_a, node_list stack_b)
 */
 node_list *push_to_b(node_list *stack_a, node_list *stack_b)
 {
-	node_list	*pushed;
+    node_list *new_element;
 
-	pushed = stack_a;
-	if (stack_b == NULL)
-		stack_b = lst_addnew((int)pushed);
-	else
-	stack_b = lst_addfront(stack_a, pushed);
-	printf("\npushed to b list B: \n");
-	print_stack(stack_b);
-	printf("\npushed to b list A: \n");
+    if (stack_a == NULL)
+        return (stack_b);
+    if (stack_b == NULL) 
+	{
+        stack_b = stack_a;
+        stack_a = stack_a->next;
+        stack_b->next = NULL;
+	} else
+	{
+    	new_element = stack_a; 
+    	stack_a = stack_a->next;
+    	new_element->next = stack_b; 
+    	stack_b = new_element;
+	}
+	printf("\npushed list A: \n");
 	print_stack(stack_a);
-	return (stack_b);
-}	
+	printf("\npushed list B: \n");
+	print_stack(stack_b);
+    return (stack_b);
+}
+
 
 node_list *rotate_a(node_list *stack_a)
 {

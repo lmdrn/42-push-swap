@@ -21,7 +21,6 @@ node_list	*rotate_down_a(node_list *stack_a);
 node_list	*rotate_a(node_list *stack_a);
 node_list	*push_to_b(node_list *stack_a, node_list *stack_b);
 void		print_stack(node_list *s);
-node_list	*lst_addfront(node_list *lst, node_list *pushed);
 void		lst_addback(node_list **lst, node_list *new);
 node_list  	*lst_addnew(int content);
 
