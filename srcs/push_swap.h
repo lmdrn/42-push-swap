@@ -16,7 +16,9 @@
 
 # include "../libft/libft.h"
 
-t_list	*swap_a(t_list *stack_a);
-void	print_stack(t_list *s);
+node_list	*swap_a(node_list *stack_a);
+node_list	*rra(node_list *stack_a);
+void	print_stack(node_list *s);
+node_list  t_lst_addnew(int content);
 
 #endif

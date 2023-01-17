@@ -36,11 +36,40 @@ int	ft_mot_count(char const *s, char c)
 	return (word);
 }
 
-void	print_stack(t_list *s)
+node_list	*lst_addnew(int contenu)
+{
+	node_list *list;
+
+	list = malloc(sizeof(node_list));
+	if (list == NULL)
+		return (NULL);
+	list->contenu = contenu;
+	list->next = NULL;
+	return (list);
+}
+
+void	lst_addback(node_list **lst, node_list *new)
+{
+	node_list	*list;
+
+	list = *lst;
+	if (*lst && new)
+	{
+		while (list->next)
+			list = list->next;
+		list->next =new;
+	}
+	else
+	{
+		*lst = new;
+	}
+}
+
+void	print_stack(node_list *s)
 {
 	if (!s)
 		return ;
-	printf("this value is : %d\n", s->content);
+	printf("this value is : %d\n", s->contenu);
 	print_stack(s->next);
 }
 
@@ -51,8 +80,8 @@ int main(int argc, char **argv )
 	int len;
 	char **res;
 	int numero;
-	t_list *stack_a = NULL;
-	t_list *new = NULL;
+	node_list *stack_a = NULL;
+	node_list *new = NULL;
 
 	i = 0;
 	len = ft_mot_count(argv[1], ' ');
@@ -67,12 +96,13 @@ int main(int argc, char **argv )
 		while (res[j])
 		{
 			numero = ft_atoi(res[j]);
-			new = ft_lstnew(numero);
-			ft_lstadd_back(&stack_a, new);
+			new = lst_addnew(numero);
+			lst_addback(&stack_a, new);
 			j++;
 		}
 		print_stack(stack_a);
-		swap_a(stack_a);
+		//swap_a(stack_a);
+		rra(stack_a);
 	}
 	return (0);
 }

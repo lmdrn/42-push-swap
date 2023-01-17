@@ -13,49 +13,22 @@
 #include "push_swap.h"
 #include <stdio.h>
 
-t_list	*swap_a(t_list *stack_a)
+/*node_list	*swap_a(node_list *stack_a)
 {
-//intervertir 2 1er elem de a
-//do nthg if no elem or one elem
-	t_list 		*first;
-	t_list		*second;
-	
-	if (stack_a == NULL || stack_a->next == NULL)
-		return (NULL);
-	first = stack_a; // assign to head
-	second = first->next; // 1st value of list is equal to 2
-	first->next = first->next->next; // je decale tout d'un cran pour pas ecrire sur le null
-	second->next = first; // second value of list is equal to 5
-	stack_a = second; // reassign stack_a head to second list 1st value	
-	printf("\n");
-	print_stack(stack_a);
-	return (stack_a);
+
 }
 
-t_list	*swap_b(t_list stack_b)
+node_list	*swap_b(node_list *stack_b)
 {
-//intervertir les deux premier elem de B
-//do nothg if no elemen or one elem
-	t_list	*first;
-	t_list	*second;
+}*/
 
-	if (stack_b == NULL || stack_b->next == NULL)
-		return (NULL);
-	first = stack_b;
-	second = first->next;
-	first->next = first->next->next;
-	second->next = first;
-	stack_b = second;
-	return (stack_b);
-}
-
-t_list	ss(t_list stack_ a, t_list stack_b)
+/*node_list	ss(node_list stack_ a, node_list stack_b)
 {
 	swap_a(stack_a);
 	swap_b(stack_b);
 }
 
-t_list	*push_to_a(t_list stack_a, t_list stack_b)
+node_list	*push_to_a(node_list stack_a, node_list stack_b)
 {
 //push 1st int from b to a
 //do nthg if b is empty
@@ -63,7 +36,7 @@ t_list	*push_to_a(t_list stack_a, t_list stack_b)
 	*stack_a = stack_b;
 }
 
-t_list *push_to_b(t_list stack_b, t_list stack_a)
+node_list *push_to_b(node_list stack_b, node_list stack_a)
 {
 //push 1st int from a to b
 //do nothg if a is NULL
@@ -71,7 +44,7 @@ t_list *push_to_b(t_list stack_b, t_list stack_a)
 	*stack_b = stack_a;	
 }	
 
-t_list ra(t_list stack_a)
+node_list ra(node_list stack_a)
 {
 //décale d'un cran vers le haut dans stack a
 }
@@ -85,21 +58,48 @@ int rr(int a, int b)
 {
 //ra + rb
 }
-
-t_list rra(t_list stack_a)
+*/
+node_list *rra(node_list *stack_a)
 {
-//décale d'un cran vers le bas dans stack a
-	t_list *first;
+	node_list *temp;
+	node_list *new_stack;
+	int		i;
+	int		j;
+	
+	printf("\n");
+	print_stack(stack_a);
+	temp = stack_a;//assign to head of stack a
+	i = 0;
+	while (temp->next) //while i'm not at the end of the list
+	{
+		temp = temp->next;//move forward
+		i++;//count length
+		printf("%d\n", i);
+	}
+	temp->next = stack_a;//here temp->next should be equal to last elem
+						 //which we assign to head
 
-	first = stack_a;
-	first->next = first->next->next;
-	//todo 1st should become last
+	j = i - 1;//assign j to lenght of list minus x times we want to rotate 
+			  //always one time in our case
+	temp = stack_a;//reassign hed to temp to back to beginning of list
+	while (j)
+	{
+		temp = temp->next;//should go to last elem we want
+		j--;
+	}	
+	new_stack = temp->next; //return our new head;
+	temp->next = NULL;
+   
+	printf("\n");
+	print_stack(new_stack);
+	return (new_stack);	//should tell the new last elem 
+					  //that the next one is the end of the list
 }
-
-t_list rrb(t_list stack_b)
+/*
+node_list rrb(node_list stack_b)
 {
 //décale d'un cran vers le bas dans stack b
-	t_list	*first;
+	node_list	*first;
 
 	first = stack_b;
 	first->next = first->next->next;
@@ -109,4 +109,4 @@ t_list rrb(t_list stack_b)
 int rrr(int a, int b)
 {
 //rra+rrb
-}
+}*/

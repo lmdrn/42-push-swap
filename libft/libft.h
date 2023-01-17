@@ -56,11 +56,17 @@ char	**ft_split(char const *s, char c);
 
 typedef struct s_list
 {
-	int			content;
+	void			*content;
 	struct s_list	*next;
 }					t_list;
 
-t_list	*ft_lstnew(int content);
+typedef struct node
+{
+	int			contenu;
+	struct node *next;
+}				node_list;
+
+t_list	*ft_lstnew(void *content);
 int		ft_lstsize(t_list *lst);
 t_list	*ft_lstlast(t_list *lst);
 void	ft_lstadd_front(t_list **lst, t_list *new);
