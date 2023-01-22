@@ -6,7 +6,7 @@
 /*   By: lmedrano <lmedrano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 18:39:23 by lmedrano          #+#    #+#             */
-/*   Updated: 2023/01/10 18:39:25 by lmedrano         ###   ########.fr       */
+/*   Updated: 2023/01/22 11:27:30 by lmedrano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	lst_addback(node_list **lst, node_list *new)
 	{
 		while (list->next)
 			list = list->next;
-		list->next =new;
+		list->next = new;
 	}
 	else
 	{
@@ -101,11 +101,13 @@ int main(int argc, char **argv )
 			lst_addback(&stack_a, new);
 			j++;
 		}
+		//tests to be sure it prints the right stuff
 		print_stack(stack_a);
-		stack_a = swap_a(stack_a);
-		stack_a = rotate_down_a(stack_a);
-		stack_a = rotate_a(stack_a);
-		stack_b = push_to_b(stack_a, stack_b);
+		stack_a = *swap_a(&stack_a);
+		stack_a = *rotate_down_a(&stack_a);
+		stack_a = *rotate_a(&stack_a);
+		stack_b = *push_to_b(&stack_a, &stack_b);
+		stack_a = *push_to_a(&stack_a, &stack_b);
 	}
 	return (0);
 }
