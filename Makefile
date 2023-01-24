@@ -6,7 +6,7 @@
 #    By: lmedrano <lmedrano@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/10 17:11:18 by lmedrano          #+#    #+#              #
-#    Updated: 2023/01/11 15:16:27 by lmedrano         ###   ########.fr        #
+#    Updated: 2023/01/24 14:18:08 by lmedrano         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,8 @@ GREEN = \033[38;5;82m
 RESET = \033[0m
 
 SRCS 		= srcs/main.c \
-		  srcs/push_swap_utils.c
+		  srcs/push_swap_utils.c \
+		  srcs/push_swap.c
 
 OBJS 		= ${SRCS:.c=.o}
 
@@ -60,7 +61,7 @@ checker:
 
 test:		all
 		${CC} ${CFLAGS} ${OBJS} ${LIB} -o ${NAME}
-		./${NAME} "5 2 7 1 6 3 9 4 8"		
+		./${NAME} "9 4 8"		
 		
 clean:		
 		@echo "$(RESET)$(ORANGE)I'M CLEANING OUT MY CLOSET...$(RESET)"

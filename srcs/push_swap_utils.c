@@ -6,7 +6,7 @@
 /*   By: lmedrano <lmedrano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 16:15:10 by lmedrano          #+#    #+#             */
-/*   Updated: 2023/01/22 11:26:36 by lmedrano         ###   ########.fr       */
+/*   Updated: 2023/01/24 09:50:16 by lmedrano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ void	swap_both(node_list **stack_a, node_list **stack_b)
 node_list	**push_to_a(node_list **stack_a, node_list **stack_b)
 {
 	node_list *new_element;
+
 	if (*stack_b == NULL || (*stack_b)->next == NULL)
 		return (NULL);
 	if (*stack_a == NULL)

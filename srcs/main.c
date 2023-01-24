@@ -6,7 +6,7 @@
 /*   By: lmedrano <lmedrano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 18:39:23 by lmedrano          #+#    #+#             */
-/*   Updated: 2023/01/22 11:27:30 by lmedrano         ###   ########.fr       */
+/*   Updated: 2023/01/24 14:19:09 by lmedrano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,12 +65,19 @@ void	lst_addback(node_list **lst, node_list *new)
 	}
 }
 
-void	print_stack(node_list *s)
+void	print_stack(node_list *stack_a)
 {
-	if (!s)
+	if (stack_a == NULL)
 		return ;
-	printf("this value is : %d\n", s->contenu);
-	print_stack(s->next);
+	printf("--- BEGINNING STACK ---\n");
+	while (stack_a != NULL)
+	{
+		printf("%d\n", stack_a->contenu);
+		stack_a = stack_a->next;
+	}
+	printf("--- END STACK ---\n");
+	//printf("%d\n", s->contenu);
+	//print_stack(s->next);
 }
 
 int main(int argc, char **argv )
@@ -86,6 +93,7 @@ int main(int argc, char **argv )
 
 	i = 0;
 	len = ft_mot_count(argv[1], ' ');
+	printf("stack_a length is : %d\n", len);
 	if (argc == 2)
 	{
 		while (i < len)
@@ -103,11 +111,15 @@ int main(int argc, char **argv )
 		}
 		//tests to be sure it prints the right stuff
 		print_stack(stack_a);
-		stack_a = *swap_a(&stack_a);
-		stack_a = *rotate_down_a(&stack_a);
-		stack_a = *rotate_a(&stack_a);
-		stack_b = *push_to_b(&stack_a, &stack_b);
-		stack_a = *push_to_a(&stack_a, &stack_b);
+		//stack_a = *swap_a(&stack_a);
+		//stack_a = *rotate_down_a(&stack_a);
+		//stack_a = *rotate_a(&stack_a);
+		//stack_b = *push_to_b(&stack_a, &stack_b);
+		//stack_a = *push_to_a(&stack_a, &stack_b); //segfault i dunno why :(
+		if (len == 3)
+			push_swap_three(&stack_a);
+		else
+			push_swap(&stack_a, &stack_b);
 	}
 	return (0);
 }
