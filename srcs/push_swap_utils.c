@@ -6,7 +6,7 @@
 /*   By: lmedrano <lmedrano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 16:15:10 by lmedrano          #+#    #+#             */
-/*   Updated: 2023/01/24 09:50:16 by lmedrano         ###   ########.fr       */
+/*   Updated: 2023/01/24 17:59:12 by lmedrano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,10 @@ node_list	**push_to_a(node_list **stack_a, node_list **stack_b)
 node_list **push_to_b(node_list **stack_a, node_list **stack_b)
 {
     node_list *new_element;
-
+	
+	new_element = malloc(sizeof(node_list));
+	if (new_element == NULL)
+		return (NULL);
     if (*stack_a == NULL || (*stack_a)->next == NULL)
         return (NULL);
     if (*stack_b == NULL) 

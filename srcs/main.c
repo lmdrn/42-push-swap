@@ -6,7 +6,7 @@
 /*   By: lmedrano <lmedrano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 18:39:23 by lmedrano          #+#    #+#             */
-/*   Updated: 2023/01/24 14:19:09 by lmedrano         ###   ########.fr       */
+/*   Updated: 2023/01/24 15:06:26 by lmedrano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,15 +65,15 @@ void	lst_addback(node_list **lst, node_list *new)
 	}
 }
 
-void	print_stack(node_list *stack_a)
+void	print_stack(node_list *stack)
 {
-	if (stack_a == NULL)
+	if (!stack)
 		return ;
 	printf("--- BEGINNING STACK ---\n");
-	while (stack_a != NULL)
+	while (stack != NULL)
 	{
-		printf("%d\n", stack_a->contenu);
-		stack_a = stack_a->next;
+		printf("%d\n", stack->contenu);
+		stack = stack->next;
 	}
 	printf("--- END STACK ---\n");
 	//printf("%d\n", s->contenu);

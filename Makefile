@@ -6,7 +6,7 @@
 #    By: lmedrano <lmedrano@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/10 17:11:18 by lmedrano          #+#    #+#              #
-#    Updated: 2023/01/24 14:18:08 by lmedrano         ###   ########.fr        #
+#    Updated: 2023/01/24 17:15:02 by lmedrano         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -61,7 +61,7 @@ checker:
 
 test:		all
 		${CC} ${CFLAGS} ${OBJS} ${LIB} -o ${NAME}
-		./${NAME} "9 4 8"		
+		./${NAME} "5 2 7 1 6 3 9 4 8"		
 		
 clean:		
 		@echo "$(RESET)$(ORANGE)I'M CLEANING OUT MY CLOSET...$(RESET)"

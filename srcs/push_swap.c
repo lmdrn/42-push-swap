@@ -6,7 +6,7 @@
 /*   By: lmedrano <lmedrano@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 09:14:00 by lmedrano          #+#    #+#             */
-/*   Updated: 2023/01/24 14:19:24 by lmedrano         ###   ########.fr       */
+/*   Updated: 2023/01/24 17:52:47 by lmedrano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,65 @@ void	push_swap_three(node_list **stack_a)
 			print_stack(*stack_a);
 }
 
+int		list_size(node_list **stack)
+{
+	int 		len;
+	node_list	*new_stack;
+
+	len = 0;
+	new_stack = *stack;
+	while (new_stack != NULL)
+	{
+		new_stack = new_stack->next;
+		len++;
+	}
+	return (len);
+}
+
 void	push_swap(node_list **stack_a, node_list **stack_b)
 {
+	int			min;
+	int			max;
+	int 		len;
+	node_list	*new_stack_a;
 
+	//1.pushed 1st 2 elem to B
+	printf("YOU ARE OUTSIDE THE LOOP \n");
+	push_to_b(stack_a, stack_b);
+	push_to_b(stack_a, stack_b);
+	//2. find cheapest nbr
+	min = smallest(*stack_b);
+	printf("min is : %d\n", min);
+	max = biggest(*stack_b);	
+	printf("max is : %d\n", max);
+	new_stack_a = *stack_a;
+	while (new_stack_a != NULL)
+	{
+		printf("contenu stack %d\n", new_stack_a->contenu);
+		if (new_stack_a->contenu < min || new_stack_a->contenu > max)
+		{
+			len = list_size(stack_b);
+			printf("len is: %d\n", len);
+			while (len > 1)
+			{
+				if ((*stack_b)->contenu != max)
+					rotate_a(stack_b);
+				len--;
+			}
+			printf("YOU ARE HERE \n");
+			print_stack(new_stack_a);
+			print_stack(*stack_b);
+			push_to_b(stack_a, stack_b);
+			//ce push la, il fait tout merder sur A
+			if ((*stack_b)->contenu > max)
+				max = (*stack_b)->contenu;
+			if ((*stack_b)->contenu < min)
+				min = (*stack_b)->contenu;
+			printf("new min is : %d\n", min);
+			printf("new max is : %d\n", max);
+		}
+		// saute un int ici :(
+		// should define new head for stack_a
+		new_stack_a = new_stack_a->next;
+	}
 }
