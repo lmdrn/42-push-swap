@@ -6,7 +6,7 @@
 /*   By: lmedrano <lmedrano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 18:39:23 by lmedrano          #+#    #+#             */
-/*   Updated: 2023/01/24 15:06:26 by lmedrano         ###   ########.fr       */
+/*   Updated: 2023/01/27 17:24:06 by lmedrano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,8 +76,6 @@ void	print_stack(node_list *stack)
 		stack = stack->next;
 	}
 	printf("--- END STACK ---\n");
-	//printf("%d\n", s->contenu);
-	//print_stack(s->next);
 }
 
 int main(int argc, char **argv )
@@ -88,12 +86,12 @@ int main(int argc, char **argv )
 	char **res;
 	int numero;
 	node_list *stack_a = NULL;
-	node_list *stack_b = NULL;
+	//node_list *stack_b = NULL;
 	node_list *new = NULL;
 
 	i = 0;
 	len = ft_mot_count(argv[1], ' ');
-	printf("stack_a length is : %d\n", len);
+	///printf("stack_a length is : %d\n", len);
 	if (argc == 2)
 	{
 		while (i < len)
@@ -109,17 +107,12 @@ int main(int argc, char **argv )
 			lst_addback(&stack_a, new);
 			j++;
 		}
-		//tests to be sure it prints the right stuff
-		print_stack(stack_a);
-		//stack_a = *swap_a(&stack_a);
-		//stack_a = *rotate_down_a(&stack_a);
-		//stack_a = *rotate_a(&stack_a);
-		//stack_b = *push_to_b(&stack_a, &stack_b);
-		//stack_a = *push_to_a(&stack_a, &stack_b); //segfault i dunno why :(
 		if (len == 3)
 			push_swap_three(&stack_a);
 		else
-			push_swap(&stack_a, &stack_b);
+			//push_swap(&stack_a, &stack_b);
+			//printf("pos is : %d\n", elem_pos(&stack_a, 8));
+			calculator(&stack_a, 2);
 	}
 	return (0);
 }

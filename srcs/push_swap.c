@@ -6,7 +6,7 @@
 /*   By: lmedrano <lmedrano@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 09:14:00 by lmedrano          #+#    #+#             */
-/*   Updated: 2023/01/24 17:52:47 by lmedrano         ###   ########.fr       */
+/*   Updated: 2023/01/27 17:47:20 by lmedrano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,26 +78,26 @@ void	push_swap_three(node_list **stack_a)
 			// if max 1st
 			if (max == first)
 			{
-					rotate_a(stack_a);
+					rotate(stack_a);
 					// && min last
 					if (min == last)
-						swap_a(stack_a);
+						swap(stack_a);
 			}
 			// if min 1st
 			else if (min == first)
 			{
-				swap_a(stack_a);
-				rotate_a(stack_a);
+				swap(stack_a);
+				rotate(stack_a);
 			}
 			// if max last
 			else if (max == last)
 			{
-				swap_a(stack_a);
+				swap(stack_a);
 			}
 			// if min last
 			else if (min == last)
 			{
-				rotate_down_a(stack_a);
+				rotate_down(stack_a);
 			}
 	}
 			printf("\nOrdered A List:\n");
@@ -119,50 +119,107 @@ int		list_size(node_list **stack)
 	return (len);
 }
 
+int		elem_pos(node_list **stack, int contenu)
+{
+	int			pos;
+	int 		head;
+
+	head = (*stack)->contenu;
+	printf("head is %d\n", head);
+	printf("contenu is %d\n", contenu);
+	pos = 1;
+	while (*stack != NULL)
+	{
+		
+		if (((*stack)->contenu == contenu) || (contenu == head))
+			break ;
+		pos++;
+	*stack = (*stack)->next;
+	}
+	return (pos);
+}
+
+
+int	rotate_to_head(node_list **stack, int pos)
+{
+	int	rotations;
+
+	index = 0;
+	while (*stack != NULL)
+	{
+		while (pos > 1)
+		{
+			rotate(stack);
+			rotations++;
+			pos--;
+		}
+		*stack = (*stack)->next;
+	}
+	return (rotations);
+}
+
 void	push_swap(node_list **stack_a, node_list **stack_b)
 {
 	int			min;
 	int			max;
-	int 		len;
-	node_list	*new_stack_a;
-
+	int 		pos;
+	int			rotation_nbr;
+	
 	//1.pushed 1st 2 elem to B
-	printf("YOU ARE OUTSIDE THE LOOP \n");
 	push_to_b(stack_a, stack_b);
 	push_to_b(stack_a, stack_b);
-	//2. find cheapest nbr
+	//2. IF OUTSIDE RANGE
+	//get min
 	min = smallest(*stack_b);
 	printf("min is : %d\n", min);
+	//get max
 	max = biggest(*stack_b);	
 	printf("max is : %d\n", max);
-	new_stack_a = *stack_a;
-	while (new_stack_a != NULL)
+	//in A
+	while (*stack_a != NULL)
 	{
-		printf("contenu stack %d\n", new_stack_a->contenu);
-		if (new_stack_a->contenu < min || new_stack_a->contenu > max)
+		if ((*stack_a)->contenu < min || (*stack_a)->contenu > max)
 		{
-			len = list_size(stack_b);
-			printf("len is: %d\n", len);
-			while (len > 1)
-			{
-				if ((*stack_b)->contenu != max)
-					rotate_a(stack_b);
-				len--;
-			}
-			printf("YOU ARE HERE \n");
-			print_stack(new_stack_a);
-			print_stack(*stack_b);
-			push_to_b(stack_a, stack_b);
-			//ce push la, il fait tout merder sur A
-			if ((*stack_b)->contenu > max)
-				max = (*stack_b)->contenu;
-			if ((*stack_b)->contenu < min)
-				min = (*stack_b)->contenu;
-			printf("new min is : %d\n", min);
-			printf("new max is : %d\n", max);
+			pos = elem_pos(stack_a);
+			printf("pos is: %d\n", pos);
+			rotation_nbr = rotate_to_head(stack_a, pos);
 		}
-		// saute un int ici :(
-		// should define new head for stack_a
-		new_stack_a = new_stack_a->next;
+		else
+		*stack_a = (*stack_a)->next;	
+	}
+	//in B
+	while (*stack_b != NULL)
+	{
+		if ((*stack_b)->contenu != max)
+		{
+			pos = list_size(stack_b);
+			rotation_nbr = rotate_to_head(stack_b, pos);
+		}
+		else
+			*stack_b = (*stack_b)->next;
+	}
+	//3.IF IN RANGE
+	//in A
+	while (*stack_a != NULL)
+	{
+		if (is in range)
+		{
+			pos = elem_pos(stack_a);
+			printf("pos is: %d\n", pos);
+			rotation_nbr = rotate_to_head(stack_a, pos);
+		}
+		else
+			*stack_a = (*stack_a)->next;
+	}
+	//in B
+	while (*stack_b != NULL)
+	{
+		if (is in range)
+		{
+			pos = get (a-1);
+			rotation_nbr = rotate_to_head(stack_b, pos);
+		}
+		else
+			*stack_b = (*stack_b)->next;
 	}
 }

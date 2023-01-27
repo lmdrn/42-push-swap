@@ -6,91 +6,44 @@
 /*   By: lmedrano <lmedrano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 16:15:10 by lmedrano          #+#    #+#             */
-/*   Updated: 2023/01/25 09:32:35 by lmedrano         ###   ########.fr       */
+/*   Updated: 2023/01/27 11:32:40 by lmedrano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include <stdio.h>
 
-node_list	**swap_a(node_list **stack_a)
+void	swap(node_list **stack)
 {
 	node_list *current_x;
 	node_list *current_y;
 	node_list *previous_y;
 	node_list *temp;
 
-	current_x = *stack_a;
-	current_y = (*stack_a)->next;
-	previous_y = *stack_a;
-	*stack_a = current_y;
+	current_x = *stack;
+	current_y = (*stack)->next;
+	previous_y = *stack;
+	*stack = current_y;
 	previous_y->next = current_x;
 	temp = current_y->next;
 	current_y->next = current_x->next;
 	current_x->next = temp;
 	printf("\nswapped list: \n");
-	print_stack(*stack_a);
-	return &(*stack_a);
+	print_stack(*stack);
 }
 
-node_list	**swap_b(node_list **stack_b)
-{
-	node_list *current_x;
-	node_list *current_y;
-	node_list *previous_y;
-	node_list *temp;
-
-	current_x = *stack_b;
-	current_y = (*stack_b)->next;
-	previous_y = *stack_b;
-	*stack_b = current_y;
-	previous_y->next = current_x;
-	temp = current_y->next;
-	current_y->next = current_x->next;
-	current_x->next = temp;
-	printf("\nswapped list B: \n");
-	print_stack(*stack_b);
-	return &(*stack_b);
-}
-
-void	swap_both(node_list **stack_a, node_list **stack_b)
+/*void	swap_both(node_list **stack_a, node_list **stack_b)
 {
 	swap_a(stack_a);
 	swap_b(stack_b);
-}
+}*/
 
-node_list	**push_to_a(node_list **stack_a, node_list **stack_b)
-{
-	node_list *new_element;
-
-	if (*stack_b == NULL || (*stack_b)->next == NULL)
-		return (NULL);
-	if (*stack_a == NULL)
-	{
-		*stack_a = *stack_b;
-		*stack_b = (*stack_b)->next;
-		(*stack_a)->next = NULL;
-	} else
-	{
-		new_element = *stack_b;
-		*stack_b = (*stack_b)->next;
-		new_element->next = *stack_a;
-		*stack_a = new_element;
-	}
-	printf("\npushed list A:\n");
-	print_stack(*stack_a);
-	printf("\npushed list B:\n");
-	print_stack(*stack_b);
-	return &(*stack_a);
-
-}
-
-node_list **push_to_b(node_list **stack_a, node_list **stack_b)
+void	push_to_a(node_list **stack_a, node_list **stack_b)
 {
     node_list *new_element;
 	
     if (!*stack_b)
-        return (NULL);
+        return ;
     new_element = *stack_a; 
     *stack_a = *stack_b;
     *stack_b = (*stack_b)->next;
@@ -99,33 +52,46 @@ node_list **push_to_b(node_list **stack_a, node_list **stack_b)
     print_stack(*stack_a);
     printf("\npushed list B: \n");
     print_stack(*stack_b);
-    return &(*stack_b);
 }
 
+void	push_to_b(node_list **stack_a, node_list **stack_b)
+{
+	node_list *new_element;
 
-node_list **rotate_a(node_list **stack_a)
+	if (!*stack_a)
+		return ;
+	new_element = *stack_b;
+	*stack_b = *stack_a;
+	*stack_a = (*stack_a)->next;
+	(*stack_b)->next = new_element;
+	printf("\npush > list A: \n");
+	print_stack(*stack_a);
+	printf("\npush > list B: \n");
+	print_stack(*stack_b);
+}
+
+void	rotate(node_list **stack)
 {
 	node_list	*first;
 	node_list	*last;
 	int			i;
 
 
-	if (*stack_a == NULL || (*stack_a)->next == NULL)
-		return (NULL);
+	if (*stack == NULL || (*stack)->next == NULL)
+		return ;
 	i = 0;
-	first = *stack_a;
-	last = *stack_a;
+	first = *stack;
+	last = *stack;
 	while (last && last->next)
 	{
 		last = last->next;
 		i++;
 	}
-	*stack_a = first->next;
+	*stack = first->next;
 	first->next = NULL;
 	last->next = first;
 	printf("\nrotate up list:\n");
-	print_stack(*stack_a);
-	return &(*stack_a);
+	print_stack(*stack);
 }
 
 /*void	rotate_a_b(node_list **stack_a, node_list  **stack_b)
@@ -134,24 +100,24 @@ node_list **rotate_a(node_list **stack_a)
 	rotate_b(stack_b);
 }*/
 
-node_list **rotate_down_a(node_list **stack_a)
+void	rotate_down(node_list **stack)
 {
 	node_list *temp;
 	int		i;
 	int		j;
 	
-	if (!*stack_a || !(*stack_a)->next)
-		return (NULL);
-	temp = *stack_a;
+	if (!*stack || !(*stack)->next)
+		return ;
+	temp = *stack;
 	i = 0;
-	while (*(stack_a)->next)
+	while ((*stack)->next)
 	{
-		*stack_a = (*stack_a)->next;
+		*stack = (*stack)->next;
 		i++;
 	}
-	(*stack_a)->next = temp;
+	(*stack)->next = temp;
 	j = i - 1; 
-	temp = *stack_a;
+	temp = *stack;
 	while (j)
 	{
 		temp = temp->next;
@@ -159,8 +125,7 @@ node_list **rotate_down_a(node_list **stack_a)
 	}	
 	temp->next = NULL;
 	printf("\nrotate down list:\n");
-	print_stack(*stack_a);
-	return &(*stack_a); 
+	print_stack(*stack);
 }
 
 /*void rotate_down_both(node_list **stack_a, node_list **stack_b)
