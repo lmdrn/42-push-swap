@@ -6,15 +6,13 @@
 /*   By: lmedrano <lmedrano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 18:39:23 by lmedrano          #+#    #+#             */
-/*   Updated: 2023/01/27 17:24:06 by lmedrano         ###   ########.fr       */
+/*   Updated: 2023/02/24 11:11:07 by lmedrano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include <stdio.h>
 
-
-//warning ! tu pensera bien a utiliser TON ft_printf avant de push !!
 int	ft_mot_count(char const *s, char c)
 {
 	int	i;
