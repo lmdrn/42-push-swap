@@ -11,106 +11,59 @@
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include <stdio.h>
 
-int	ft_mot_count(char const *s, char c)
+void	ft_init(node_list **stack, int ac, char **av)
 {
-	int	i;
-	int	word;
+	node_list	*new_stack;
+	char	 	**res;
+	int			i;
 
 	i = 0;
-	word = 0;
-	while (s[i] != '\0')
-	{
-		if (s[i] != c)
-		{
-			word++;
-			while (s[i] != c && s[i] != '\0')
-					i++;
-		}
-		else
-			i++;
-	}
-	return (word);
-}
-
-node_list	*lst_addnew(int contenu)
-{
-	node_list *list;
-
-	list = malloc(sizeof(node_list));
-	if (list == NULL)
-		return (NULL);
-	list->contenu = contenu;
-	list->next = NULL;
-	return (list);
-}
-
-void	lst_addback(node_list **lst, node_list *new)
-{
-	node_list	*list;
-
-	list = *lst;
-	if (*lst && new)
-	{
-		while (list->next)
-			list = list->next;
-		list->next = new;
-	}
+	if (ac == 2)
+		res = ft_split(av[1], ' ');
 	else
+		i = 1;
+		res = av;
+	while(res[i])
 	{
-		*lst = new;
+		new_stack = lst_addnew(ft_atoi(res[i]));
+		lst_addback(stack, new_stack);
+		i++;
 	}
+	ft_normalize(stack);
+	if (ac == 2)
+		ft_free_str(*res);
 }
 
-void	print_stack(node_list *stack)
+void	ft_sort(node_list **stack_a, node_list **stack_b)
 {
-	if (!stack)
-		return ;
-	printf("--- BEGINNING STACK ---\n");
-	while (stack != NULL)
-	{
-		printf("%d\n", stack->contenu);
-		stack = stack->next;
-	}
-	printf("--- END STACK ---\n");
+	if (lst_size(*stack_a) < 5)
+		small_sort(stack_a, stack_b);
+	else
+		big_sort(stack_a, stack_b);
 }
 
-int main(int argc, char **argv )
+int main(int ac, char **av )
 {
-    int i;
-	int j;
-	int len;
-	char **res;
-	int numero;
-	node_list *stack_a = NULL;
-	//node_list *stack_b = NULL;
-	node_list *new = NULL;
+	node_list **stack_a;
+	node_list **stack_b;
 
-	i = 0;
-	len = ft_mot_count(argv[1], ' ');
-	///printf("stack_a length is : %d\n", len);
-	if (argc == 2)
+	if (ac < 2)
+		return (-1);
+	ft_check_args(ac, av);
+	stack_a = malloc(sizeof(node_list));
+	stack_b = malloc(sizeof(node_list));
+	*stack_a = NULL;
+	*stack_b = NULL;
+	ft_init(stack_a, ac, av);
+	if (is_sorted(*stack_a))
 	{
-		while (i < len)
-		{
-			res = ft_split(argv[1], ' ');
-			i++;
-		}
-		j = 0;
-		while (res[j])
-		{
-			numero = ft_atoi(res[j]);
-			new = lst_addnew(numero);
-			lst_addback(&stack_a, new);
-			j++;
-		}
-		if (len == 3)
-			push_swap_three(&stack_a);
-		else
-			//push_swap(&stack_a, &stack_b);
-			//printf("pos is : %d\n", elem_pos(&stack_a, 8));
-			calculator(&stack_a, 2);
+		ft_free_stack(stack_a);
+		ft_free_stack(stack_b);
+		return (0);
 	}
+	ft_sort(stack_a, stack_b);
+	ft_free_stack(stack_a);
+	ft_free_stack(stack_b);
 	return (0);
 }

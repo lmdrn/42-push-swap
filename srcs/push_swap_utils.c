@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   list_manipulations.c                                  :+:      :+:    :+:   */
+/*   push_swap_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lmedrano <lmedrano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,62 +12,36 @@
 
 #include "push_swap.h"
 
-node_list	*lst_addnew(int contenu)
+void    ft_error()
 {
-	node_list *list;
-
-	list = malloc(sizeof(node_list));
-	if (list == NULL)
-		return (NULL);
-	list->contenu = contenu;
-	list->next = NULL;
-	return (list);
+    write(1, "Error\n", 6);
+    exit(0);
 }
 
-void	lst_addback(node_list **lst, node_list *new)
+void    ft_free_str(char *str)
 {
-	node_list	*list;
-
-	list = *lst;
-	if (*lst && new)
-	{
-		while (list->next)
-			list = list->next;
-		list->next = new;
-	}
-	else
-	{
-		*lst = new;
-	}
+    int i;
+    i = 0;
+    while(str[i])
+        i++;
+    while(i >= 0)
+    {
+        free(&str[i]);
+        i--;
+    }
 }
 
-int	lst_size(node_list *lst)
+void    ft_free_stack(node_list **stack)
 {
-	int		i;
-	node_list	*list;
-
-	i = 0;
-	list = lst;
-	while (list != NULL)
-	{
-		list = list->next;
-		i++;
-	}
-	return (i);
-}
-
-void	print_stack(node_list *stack)
-{
+    node_list *current;
     node_list *tmp;
 
-	if (!stack)
-		return ;
-    tmp = stack;
-	while (tmp != NULL)
-	{
-		ft_putnbr_fd(tmp->contenu, 1);
-        ft_putendl_fd("", 1);
-		tmp = tmp->next;
-	}
-	printf("--- END STACK ---\n");
+    current = *stack;
+    while (current)
+    {
+        tmp = current;
+        current = current->next;
+        free(tmp);
+    }
+    free(stack);
 }

@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap_utils.c                                  :+:      :+:    :+:   */
+/*   normalize.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lmedrano <lmedrano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,47 +12,43 @@
 
 #include "push_swap.h"
 
-void    ft_error(char *str)
+//function to get next min
+node_list *get_next_min(node_list **stack)
 {
-    write(1, "Error\n", 6);
-    exit(0);
-}
+    node_list *head;
+    node_list *next_min;
+    int        has_min;
 
-void    ft_free(char **str)
-{
-    int i;
-    i = 0;
-    while(str[i])
-        i++;
-    while(i >= 0)
+    head = *stack;
+    next_min = NULL;
+    has_min = 0;
+    if (!head)
+        return (*stack);
+    while (head && head->next)
     {
-        free(str[i]);
-        i--;
+        if ( (head->index == -1) && (!has_min || head->contenu < next_min->contenu) )
+        {
+            next_min = head;
+            has_min = 1;
+        }
+        head = head->next;
+    }
+    return (next_min);
+
+}
+//function to transform digit into index 
+void ft_normalize(node_list **stack)
+{
+    node_list *head;
+    int       index;
+
+    index = 0;
+    head = *stack;
+    while (head)
+    {
+        head->index = index++;
+        head = get_next_min(stack);
     }
 }
 
-void    ft_free_stack(node_list **stack)
-{
-    node_list *current;
-    node_list *tmp;
 
-    current = *stack;
-    while (current)
-    {
-        tmp = current;
-        current = current->next;
-        free(tmp);
-    }
-    free(stack);
-}
-
-int is_sorted(node_list **stack)
-{
-    node_list *tmp;
-
-    tmp = *stack;
-    if (tmp->contenu > tmp->next->contenu)
-        return (0);
-    tmp = tmp->next;
-    return (1);
-}

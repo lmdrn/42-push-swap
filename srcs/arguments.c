@@ -27,7 +27,7 @@ int is_num(char *num)
     return (1);
 }
 
-int is_alien(int num, char **av, int i)
+int contains(int num, char **av, int i)
 {
     i++;
     while (av[i])
@@ -35,8 +35,8 @@ int is_alien(int num, char **av, int i)
         if (ft_atoi(av[i]) == num)
             return (1);
         i++;
-        return (0);
     }
+    return (0);
 }
 
 void    ft_check_args(int ac, char **av)
@@ -57,13 +57,13 @@ void    ft_check_args(int ac, char **av)
     {
         tmp = ft_atoi(av[i]);
         if (!is_num(av[i]))
-            ft_error("Error\n");
-        if (is_alien(tmp, res, i))
-            ft_error("Error\n");
+            ft_error();
+        if (contains(tmp, res, i))
+            ft_error();
         if (tmp < -2147483648 || tmp > 2147483648)
-            ft_error("Error\n");
+            ft_error();
         i++;
     }
     if (ac == 2)
-        ft_free(res);
+        ft_free_str(*res);
 }

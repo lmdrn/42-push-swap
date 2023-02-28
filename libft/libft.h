@@ -63,6 +63,7 @@ typedef struct s_list
 typedef struct node
 {
 	int			contenu;
+	int			index;
 	struct node *next;
 }				node_list;
 
