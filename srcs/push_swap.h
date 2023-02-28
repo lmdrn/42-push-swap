@@ -18,8 +18,8 @@
 
 int 	    is_sorted(node_list *stack);
 void        ft_free_stack(node_list **stack);
-void        ft_free_str(char *str);
-void        ft_error();
+void        ft_free_str(char **str);
+void	    ft_error(char *str);
 int	        swap(node_list **stack);
 int	        swap_a(node_list **stack_a);
 int	        swap_b(node_list **stack_b);
@@ -45,5 +45,6 @@ void	    ft_sort(node_list **stack_a, node_list **stack_b);
 void        ft_normalize(node_list **stack);
 void        small_sort(node_list **stack_a, node_list **stack_b);
 void        big_sort(node_list **stack_a, node_list **stack_b);
+int	        ft_atoi2(const char *str);
 
 #endif

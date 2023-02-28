@@ -26,7 +26,8 @@ int	swap(node_list **stack)
 	current_x = *stack;
 	current_y = (*stack)->next;
 	if (!current_x && ! current_y)
-		ft_error();
+		ft_error("Error");
+		exit(0);
 	previous_y = *stack;
 	*stack = current_y;
 	previous_y->next = current_x;

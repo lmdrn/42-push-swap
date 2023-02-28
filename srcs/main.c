@@ -31,8 +31,8 @@ void	ft_init(node_list **stack, int ac, char **av)
 		i++;
 	}
 	ft_normalize(stack);
-	if (ac == 2)
-		ft_free_str(*res);
+/*	if (ac == 2)
+		ft_free_str(res); */
 }
 
 void	ft_sort(node_list **stack_a, node_list **stack_b)
@@ -51,8 +51,8 @@ int main(int ac, char **av )
 	if (ac < 2)
 		return (-1);
 	ft_check_args(ac, av);
-	stack_a = malloc(sizeof(node_list));
-	stack_b = malloc(sizeof(node_list));
+	stack_a = malloc(sizeof(node_list *));
+	stack_b = malloc(sizeof(node_list *));
 	*stack_a = NULL;
 	*stack_b = NULL;
 	ft_init(stack_a, ac, av);

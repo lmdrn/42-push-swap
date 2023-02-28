@@ -32,6 +32,8 @@ CC 			= gcc
 
 CFLAGS		= -Wall -Werror -Wextra
 
+LFLAGS		= -g3 -fsanitize=address
+
 RM			= rm -rf
 
 LIB 		= -L./libft -lft
@@ -54,10 +56,6 @@ header:
 			@echo "$(BLUE)     \___  |./ /___| |  | | (_| |   <  __/ $(RESET)"
 			@echo "$(BLUE)         |_/\_____/\_|  |_/\__,_|_|\_\___|......I'm so badass wesh $(RESET)"
 			@echo "$(BLUE)                           $(RESET)"
-
-test:		all
-			${CC} ${CFLAGS} ${OBJS} ${LIB} -o ${NAME}
-			./${NAME} "5 2 7"
 		
 clean:		
 			@echo "$(RESET)$(ORANGE)I'M CLEANING OUT MY CLOSET...$(RESET)"

@@ -12,13 +12,42 @@
 
 #include "push_swap.h"
 
-void    ft_error()
+int	ft_atoi2(const char *str)
 {
-    write(1, "Error\n", 6);
-    exit(0);
+	int		        i;
+	int		        is_neg;
+	long long int	result;
+
+	i = 0;
+	is_neg = 1;
+	result = 0;
+	while (str[i] != '\0')
+	{
+		while (ft_isspace(str[i]) == 1)
+			i++;
+		while ((str[i] == '+') || (str[i] == '-'))
+		{	
+			if ((str[i + 1] == '+') || (str[i + 1] == '-'))
+				return (0);
+			if (str[i] == '-')
+				is_neg *= -1;
+			i++;
+		}
+		while (str[i] >= '0' && str[i] <= '9')
+			result = (str[i++] - '0') + (result * 10);
+		return (result * is_neg);
+	}
+	return (0);
 }
 
-void    ft_free_str(char *str)
+void	ft_error(char *str)
+{
+	ft_putendl_fd(str, 2);
+	exit(1);
+}
+
+
+void    ft_free_str(char **str)
 {
     int i;
     i = 0;
