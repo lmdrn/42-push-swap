@@ -65,8 +65,8 @@ typedef struct node
 {
 	int			contenu;
 	int			index;
-	struct node *next;
-}				node_list;
+	struct node	*next;
+}				t_node;
 
 t_list	*ft_lstnew(void *content);
 int		ft_lstsize(t_list *lst);

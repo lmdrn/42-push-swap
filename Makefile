@@ -16,13 +16,16 @@ GREEN 		= \033[38;5;82m
 RESET 		= \033[0m
 
 SRCS 		= srcs/main.c \
-		  	  srcs/operations.c \
+		  	  srcs/swap.c \
+			  srcs/push.c \
+			  srcs/rotate.c \
+			  srcs/revrotate.c \
 			  srcs/arguments.c \
 		  	  srcs/small_sort.c \
 		  	  srcs/big_sort.c \
 		  	  srcs/list_manipulations.c \
 		      srcs/push_swap_utils.c \
-		  	  srcs/normalize.c
+		  	  srcs/index.c
 
 OBJS 		= ${SRCS:.c=.o}
 
@@ -56,6 +59,10 @@ header:
 			@echo "$(BLUE)     \___  |./ /___| |  | | (_| |   <  __/ $(RESET)"
 			@echo "$(BLUE)         |_/\_____/\_|  |_/\__,_|_|\_\___|......I'm so badass wesh $(RESET)"
 			@echo "$(BLUE)                           $(RESET)"
+
+test:		all
+			${CC} ${CFLAGS} ${LFLAGS} ${OBJS} ${LIB} -o ${NAME}
+			./${NAME} 3 2 1
 		
 clean:		
 			@echo "$(RESET)$(ORANGE)I'M CLEANING OUT MY CLOSET...$(RESET)"

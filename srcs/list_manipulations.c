@@ -1,38 +1,56 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   list_manipulations.c                                  :+:      :+:    :+:   */
+/*   list_manipulations.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lmedrano <lmedrano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 16:15:10 by lmedrano          #+#    #+#             */
-/*   Updated: 2023/01/27 11:32:40 by lmedrano         ###   ########.fr       */
+/*   Updated: 2023/03/04 17:12:47 by lmedrano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-node_list	*lst_addnew(int contenu)
+t_node	*lst_last(t_node *head)
 {
-	node_list *list;
+	if (!head)
+		return (NULL);
+	while (head->next)
+		head = head->next;
+	return (head);
+}
 
-	list = malloc(sizeof(node_list));
-	if (list == NULL)
+t_node	*lst_new(int contenu)
+{
+	t_node	*list;
+
+	list = malloc(sizeof(t_node));
+	if (!list)
 		return (NULL);
 	list->contenu = contenu;
+ 	list->index = -1;
 	list->next = NULL;
 	return (list);
 }
 
-void	lst_addback(node_list **lst, node_list *new)
+void	lst_addfront(t_node **lst, t_node *new)
 {
-	node_list	*list;
+	if (!new)
+		return ;
+	new->next = *lst;
+	*lst = new;
+}
 
-	list = *lst;
-	if (*lst && new)
+void	lst_addback(t_node **lst, t_node *new)
+{
+	t_node	*list;
+
+	if (!new)
+		return ;
+	if (*lst)
 	{
-		while (list->next)
-			list = list->next;
+		list = lst_last(*lst);
 		list->next = new;
 	}
 	else
@@ -41,43 +59,25 @@ void	lst_addback(node_list **lst, node_list *new)
 	}
 }
 
-int	lst_size(node_list *lst)
+int	lst_size(t_node *lst)
 {
 	int		i;
-	node_list	*list;
 
 	i = 0;
-	list = lst;
-	while (list != NULL)
+	while (lst)
 	{
-		list = list->next;
 		i++;
+		lst = lst->next;
 	}
 	return (i);
 }
 
-void	print_stack(node_list *stack)
+int	is_sorted(t_node **stack)
 {
-    node_list *tmp;
+	t_node	*tmp;
 
-	if (!stack)
-		return ;
-    tmp = stack;
-	while (tmp != NULL)
-	{
-		ft_putnbr_fd(tmp->contenu, 1);
-        ft_putendl_fd("", 1);
-		tmp = tmp->next;
-	}
-}
-
-int		is_sorted(node_list *stack)
-{
-	node_list *tmp;
-	if (!stack)
-		return (0);
-	tmp = stack;
-	while (tmp && tmp->next)
+	tmp = *stack;
+	while (tmp->next)
 	{
 		if (tmp->contenu > tmp->next->contenu)
 			return (0);
