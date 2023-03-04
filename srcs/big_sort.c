@@ -32,7 +32,7 @@ void	big_sort(t_node **stack_a, t_node **stack_b)
 			j++;
 		}
 		while (lst_size(*stack_b) != 0)
-			push_a(stack_a, stack_b);
+			push_a(stack_b, stack_a);
 		i++;
 	}
 }

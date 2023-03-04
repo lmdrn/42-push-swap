@@ -54,9 +54,7 @@ void	lst_addback(t_node **lst, t_node *new)
 		list->next = new;
 	}
 	else
-	{
 		*lst = new;
-	}
 }
 
 int	lst_size(t_node *lst)

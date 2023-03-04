@@ -15,6 +15,7 @@
 void	push(t_node **stack_from, t_node **stack_to)
 {
 	t_node	*tmp;
+	
 	if (lst_size(*stack_from) != 0)
 	{
 		tmp = *stack_from;

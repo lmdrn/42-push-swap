@@ -12,17 +12,17 @@
 
 #include "push_swap.h"
 
-int	get_min(t_node **stack_a, int index)
+int	get_min(t_node **stack, int index)
 {
 	t_node	*head;
 	int		min;
 
-	head = *stack_a;
+	head = *stack;
 	min = head->index;
 	while (head->next)
 	{
 		head = head->next;
-		if ((head->index < min) && (head->index != index))
+		if (head->index < min && head->index != index)
 			min = head->index;
 	}
 	return (min);
@@ -35,7 +35,7 @@ int	get_distance(t_node **stack, int min)
 
 	head = *stack;
 	distance = 0;
-	while (head && head->next)
+	while (head)
 	{
 		if (head->index == min)
 			break ;

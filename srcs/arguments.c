@@ -55,7 +55,8 @@ void	ft_check_args(int ac, char **av)
 	while (av[i])
 	{
 		tmp = ft_atoi2(av[i]);
-		if (!is_num(av[i]) || num_is_repeated(tmp, av, i) || tmp < -2147483648 || tmp > 2147483647)
+		if (!is_num(av[i]) || num_is_repeated(tmp, av, i) 
+			|| tmp < -2147483648 || tmp > 2147483647)
 			ft_error("Error");
 		i++;
 	}

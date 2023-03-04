@@ -62,7 +62,7 @@ header:
 
 test:		all
 			${CC} ${CFLAGS} ${LFLAGS} ${OBJS} ${LIB} -o ${NAME}
-			./${NAME} 3 2 1
+			./${NAME} -2147483648 2147483647 -2147483647
 		
 clean:		
 			@echo "$(RESET)$(ORANGE)I'M CLEANING OUT MY CLOSET...$(RESET)"

@@ -19,10 +19,10 @@
 void	ft_free_stack(t_node **stack);
 void	ft_free_str(char **str);
 void	ft_error(char *str);
-int		swap(t_node **stack);
-int		swap_a(t_node **stack_a);
-int		swap_b(t_node **stack_b);
-int		swap_both(t_node **stack_a, t_node **stack_b);
+void		swap(t_node **stack);
+void		swap_a(t_node **stack_a);
+void		swap_b(t_node **stack_b);
+void		swap_both(t_node **stack_a, t_node **stack_b);
 void		push(t_node **stack_to, t_node **stack_from);
 void		push_a(t_node **stack_a, t_node **stack_b);
 void		push_b(t_node **stack_b, t_node **stack_a);
@@ -30,10 +30,10 @@ void		rotate(t_node **stack);
 void		rotate_a(t_node **stack_a);
 void		rotate_b(t_node **stack_b);
 void		rotate_both(t_node **stack_a, t_node **stack_b);
-int		rotate_down(t_node **stack);
-int		rotate_down_a(t_node **stack_a);
-int		rotate_down_b(t_node **stack_b);
-int		rotate_down_both(t_node **stack_a, t_node **stack_b);
+void		rotate_down(t_node **stack);
+void		rotate_down_a(t_node **stack_a);
+void		rotate_down_b(t_node **stack_b);
+void		rotate_down_both(t_node **stack_a, t_node **stack_b);
 t_node	*lst_new(int contenu);
 t_node	*lst_last(t_node *head);
 void	lst_addfront(t_node **lst, t_node *new);
@@ -47,7 +47,7 @@ void	ft_normalize(t_node **stack);
 void	small_sort(t_node **stack_a, t_node **stack_b);
 void	big_sort(t_node **stack_a, t_node **stack_b);
 long long int		ft_atoi2(const char *str);
-int     get_min(t_node **stack_a, int index);
+int     get_min(t_node **stack, int index);
 int     get_distance(t_node **stack, int min);
 
 #endif

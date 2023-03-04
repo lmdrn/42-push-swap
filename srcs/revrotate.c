@@ -12,55 +12,38 @@
 
 #include "push_swap.h"
 
-int	rotate_down(t_node **stack)
+void	rotate_down(t_node **stack)
 {
-	t_node	*temp;
-	int		i;
-	int		j;
+	t_node	*prev_tail;
+	t_node	*tail;
 
-	if (!*stack || !(*stack)->next)
-		return (-1);
-	temp = *stack;
-	i = 0;
-	while ((*stack)->next)
+	if (lst_size(*stack) > 2)
 	{
-		*stack = (*stack)->next;
-		i++;
+		prev_tail = *stack;
+		while (prev_tail->next->next)
+			prev_tail = prev_tail->next;
+		tail = prev_tail->next;
+		prev_tail->next = NULL;
+		tail->next = *stack;
+		*stack = tail;
 	}
-	(*stack)->next = temp;
-	j = i - 1;
-	temp = *stack;
-	while (j)
-	{
-		temp = temp->next;
-		j--;
-	}	
-	temp->next = NULL;
-	return (0);
 }
 
-int	rotate_down_a(t_node **stack_a)
+void	rotate_down_a(t_node **stack_a)
 {
-	if (rotate_down(stack_a) == -1)
-		return (-1);
+	rotate_down(stack_a);
 	ft_putendl_fd("rra", 1);
-	return (0);
 }
 
-int	rotate_down_b(t_node **stack_b)
+void	rotate_down_b(t_node **stack_b)
 {
-	if (rotate_down(stack_b) == -1)
-		return (-1);
+	rotate_down(stack_b);
 	ft_putendl_fd("rrb", 1);
-	return (0);
 }
 
-int	rotate_down_both(t_node **stack_a, t_node **stack_b)
+void	rotate_down_both(t_node **stack_a, t_node **stack_b)
 {
-	if ((lst_size(*stack_a) < 2) || (lst_size(*stack_b) < 2))
-		return (-1);
-	rotate_down_a(stack_a);
-	rotate_down_b(stack_b);
+	rotate_down(stack_a);
+	rotate_down(stack_b);
 	ft_putendl_fd("rrr", 1);
-	return (0);
 }
