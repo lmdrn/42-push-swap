@@ -6,7 +6,7 @@
 #    By: lmedrano <lmedrano@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/10 17:11:18 by lmedrano          #+#    #+#              #
-#    Updated: 2023/03/05 14:04:08 by lmedrano         ###   ########.fr        #
+#    Updated: 2023/03/05 14:18:18 by lmedrano         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,8 +35,6 @@ CC 			= gcc
 
 CFLAGS		= -Wall -Werror -Wextra
 
-# LFLAGS		= -g3 -fsanitize=address
-
 RM			= rm -rf
 
 LIB 		= -L./libft -lft
@@ -60,9 +58,9 @@ header:
 			@echo "$(BLUE)         |_/\_____/\_|  |_/\__,_|_|\_\___|......I'm so badass wesh $(RESET)"
 			@echo "$(BLUE)                           $(RESET)"
 
-test:		all
-			${CC} ${CFLAGS} ${OBJS} ${LIB} -o ${NAME}
-			./${NAME} "3 2 1"
+# test:		all
+# 			${CC} ${CFLAGS} ${OBJS} ${LIB} -o ${NAME}
+# 			./${NAME} "3 2 1"
 		
 clean:		
 			@echo "$(RESET)$(ORANGE)I'M CLEANING OUT MY CLOSET...$(RESET)"
