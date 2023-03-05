@@ -6,7 +6,7 @@
 /*   By: lmedrano <lmedrano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 16:15:10 by lmedrano          #+#    #+#             */
-/*   Updated: 2023/03/04 17:18:45 by lmedrano         ###   ########.fr       */
+/*   Updated: 2023/03/05 11:19:07 by lmedrano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ t_node	*get_next_min(t_node **stack)
 				has_min = 1;
 			}
 			head = head->next;
-    	}
+		}
 	}
 	return (next_min);
 }

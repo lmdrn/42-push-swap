@@ -6,7 +6,7 @@
 #    By: lmedrano <lmedrano@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/10 17:11:18 by lmedrano          #+#    #+#              #
-#    Updated: 2023/02/28 12:16:56 by lmedrano         ###   ########.fr        #
+#    Updated: 2023/03/05 14:04:08 by lmedrano         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,7 +35,7 @@ CC 			= gcc
 
 CFLAGS		= -Wall -Werror -Wextra
 
-LFLAGS		= -g3 -fsanitize=address
+# LFLAGS		= -g3 -fsanitize=address
 
 RM			= rm -rf
 
@@ -61,8 +61,8 @@ header:
 			@echo "$(BLUE)                           $(RESET)"
 
 test:		all
-			${CC} ${CFLAGS} ${LFLAGS} ${OBJS} ${LIB} -o ${NAME}
-			./${NAME} -2147483648 2147483647 -2147483647
+			${CC} ${CFLAGS} ${OBJS} ${LIB} -o ${NAME}
+			./${NAME} "3 2 1"
 		
 clean:		
 			@echo "$(RESET)$(ORANGE)I'M CLEANING OUT MY CLOSET...$(RESET)"
@@ -77,4 +77,4 @@ fclean:		clean
 
 re:			fclean all
 
-.PHONY:		all checker test clean fclean re
+.PHONY:		all test clean fclean re

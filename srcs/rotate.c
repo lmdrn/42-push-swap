@@ -6,7 +6,7 @@
 /*   By: lmedrano <lmedrano@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 16:50:58 by lmedrano          #+#    #+#             */
-/*   Updated: 2023/03/04 16:55:23 by lmedrano         ###   ########.fr       */
+/*   Updated: 2023/03/05 11:17:37 by lmedrano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ void	rotate(t_node **stack)
 		last->next = first;
 		first->next = NULL;
 	}
-
 }
 
 void	rotate_a(t_node **stack_a)

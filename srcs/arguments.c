@@ -6,7 +6,7 @@
 /*   By: lmedrano <lmedrano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 16:15:10 by lmedrano          #+#    #+#             */
-/*   Updated: 2023/03/04 17:28:06 by lmedrano         ###   ########.fr       */
+/*   Updated: 2023/03/05 13:56:17 by lmedrano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,18 +48,20 @@ void	ft_check_args(int ac, char **av)
 	long	tmp;
 
 	i = 0;
-	if (*av && ac == 2)
+	if (ac == 2)
 		av = ft_split(av[1], ' ');
 	else
 		i = 1;
 	while (av[i])
 	{
 		tmp = ft_atoi2(av[i]);
-		if (!is_num(av[i]) || num_is_repeated(tmp, av, i) 
+		if (!is_num(av[i]) || num_is_repeated(tmp, av, i)
 			|| tmp < -2147483648 || tmp > 2147483647)
+		{
 			ft_error("Error");
+		}
 		i++;
 	}
 	if (ac == 2)
-        ft_free_str(av);
+		ft_free_str(av);
 }

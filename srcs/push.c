@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmedrano <lmedrano@student.42lausanne.ch>  +#+  +:+       +#+        */
+/*   By: lmedrano <lmedrano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 16:50:30 by lmedrano          #+#    #+#             */
-/*   Updated: 2023/03/04 16:55:45 by lmedrano         ###   ########.fr       */
+/*   Updated: 2023/03/05 12:01:58 by lmedrano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	push(t_node **stack_from, t_node **stack_to)
 {
 	t_node	*tmp;
-	
+
 	if (lst_size(*stack_from) != 0)
 	{
 		tmp = *stack_from;

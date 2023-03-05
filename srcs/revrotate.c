@@ -14,18 +14,18 @@
 
 void	rotate_down(t_node **stack)
 {
-	t_node	*prev_tail;
-	t_node	*tail;
+	t_node	*prev_last;
+	t_node	*last;
 
 	if (lst_size(*stack) > 2)
 	{
-		prev_tail = *stack;
-		while (prev_tail->next->next)
-			prev_tail = prev_tail->next;
-		tail = prev_tail->next;
-		prev_tail->next = NULL;
-		tail->next = *stack;
-		*stack = tail;
+		prev_last = *stack;
+		while (prev_last->next->next)
+			prev_last = prev_last->next;
+		last = prev_last->next;
+		prev_last->next = NULL;
+		last->next = *stack;
+		*stack = last;
 	}
 }
 

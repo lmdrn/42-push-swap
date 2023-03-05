@@ -6,7 +6,7 @@
 /*   By: lmedrano <lmedrano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 18:39:23 by lmedrano          #+#    #+#             */
-/*   Updated: 2023/03/04 17:12:11 by lmedrano         ###   ########.fr       */
+/*   Updated: 2023/03/05 14:12:57 by lmedrano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,12 +41,28 @@ void	ft_sort(t_node **stack_a, t_node **stack_b)
 		big_sort(stack_a, stack_b);
 }
 
+int	is_sorted(t_node **stack)
+{
+	t_node	*tmp;
+
+	tmp = *stack;
+	while (tmp && tmp->next)
+	{
+		if (tmp->contenu > tmp->next->contenu)
+		{
+			return (0);
+		}	
+		tmp = tmp->next;
+	}
+	return (1);
+}
+
 int	main(int ac, char **av)
 {
 	t_node	**stack_a;
 	t_node	**stack_b;
 
-	if (ac < 2)
+	if (*av && ac < 2)
 		return (0);
 	ft_check_args(ac, av);
 	stack_a = malloc(sizeof(t_node *));

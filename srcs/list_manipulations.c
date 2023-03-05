@@ -6,7 +6,7 @@
 /*   By: lmedrano <lmedrano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 16:15:10 by lmedrano          #+#    #+#             */
-/*   Updated: 2023/03/04 17:12:47 by lmedrano         ###   ########.fr       */
+/*   Updated: 2023/03/05 11:18:28 by lmedrano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ t_node	*lst_new(int contenu)
 	if (!list)
 		return (NULL);
 	list->contenu = contenu;
- 	list->index = -1;
+	list->index = -1;
 	list->next = NULL;
 	return (list);
 }
@@ -68,18 +68,4 @@ int	lst_size(t_node *lst)
 		lst = lst->next;
 	}
 	return (i);
-}
-
-int	is_sorted(t_node **stack)
-{
-	t_node	*tmp;
-
-	tmp = *stack;
-	while (tmp->next)
-	{
-		if (tmp->contenu > tmp->next->contenu)
-			return (0);
-		tmp = tmp->next;
-	}
-	return (1);
 }
